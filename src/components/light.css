@@ -1,0 +1,97 @@
+.Light {
+    width: 250px;
+    height: 250px;
+    background-color: #000;
+    border-radius: 16px;
+    transition: background-color 80ms ease-in-out;
+    
+    --border-corner-radius: 75%;
+    --shadow-size: 16px;
+    --shadow-diffumination: 48px;
+}
+
+/* TODO: add another wrapper for nice inset border radius */
+
+.Light-spacer {
+    padding: 8px;
+    --border-corner-radius: 75%;
+}
+
+.Light-border {
+    background-color: #333;
+    padding: 16px;
+    border-radius: 16px;
+    transition: transform 50ms ease-in-out;
+}
+
+.Light-red-border {
+    border-top-left-radius: var(--border-corner-radius);
+}
+
+.Light-green-border {
+    border-top-right-radius: var(--border-corner-radius);
+}
+
+.Light-blue-border {
+    border-bottom-left-radius: var(--border-corner-radius);
+}
+
+.Light-yellow-border {
+    border-bottom-right-radius: var(--border-corner-radius);
+}
+
+.Light-red-off {
+    border-top-left-radius: var(--border-corner-radius);
+    background-color: hsl(0, 100%, 25%);
+    z-index: 1;
+}
+
+.Light-red-on {
+    border-top-left-radius: var(--border-corner-radius);
+    background-color: hsl(0, 100%, 50%);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(0, 100%, 50%, 0.5);
+    z-index: 9999;
+}
+
+.Light-green-off {
+    border-top-right-radius: var(--border-corner-radius);
+    background-color: hsl(120, 100%, 25%);
+    z-index: 1;
+}
+
+.Light-green-on {
+    border-top-right-radius: var(--border-corner-radius);
+    background-color: hsl(120, 100%, 50%);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(120, 100%, 50%, 0.5);
+    z-index: 9999;
+}
+
+.Light-blue-off {
+    border-bottom-left-radius: var(--border-corner-radius);
+    background-color: hsl(240, 100%, 25%);
+    z-index: 1;
+}
+
+.Light-blue-on {
+    border-bottom-left-radius: var(--border-corner-radius);
+    background-color: hsl(240, 100%, 50%);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(240, 100%, 50%, 0.5);
+    z-index: 9999;
+}
+
+.Light-yellow-off {
+    border-bottom-right-radius: var(--border-corner-radius);
+    background-color: hsl(60, 100%, 25%);
+    z-index: 1;
+}
+
+.Light-yellow-on {
+    border-bottom-right-radius: var(--border-corner-radius);
+    background-color: hsl(60, 100%, 50%);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(60, 100%, 50%, 0.5);
+    z-index: 9999;
+}
+
+.Light-border:active {
+    transform: scale(0.925);
+}
