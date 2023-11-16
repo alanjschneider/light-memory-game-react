@@ -4,7 +4,7 @@
     background-color: #000;
     border-radius: 16px;
     transition: background-color 80ms ease-in-out;
-    
+
     --border-corner-radius: 75%;
     --shadow-size: 16px;
     --shadow-diffumination: 48px;
@@ -49,7 +49,8 @@
 .Light-red-on {
     border-top-left-radius: var(--border-corner-radius);
     background-color: hsl(0, 100%, 50%);
-    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(0, 100%, 50%, 0.5);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size)
+        hsla(0, 100%, 50%, 0.5);
     z-index: 9999;
 }
 
@@ -62,7 +63,8 @@
 .Light-green-on {
     border-top-right-radius: var(--border-corner-radius);
     background-color: hsl(120, 100%, 50%);
-    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(120, 100%, 50%, 0.5);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size)
+        hsla(120, 100%, 50%, 0.5);
     z-index: 9999;
 }
 
@@ -75,7 +77,8 @@
 .Light-blue-on {
     border-bottom-left-radius: var(--border-corner-radius);
     background-color: hsl(240, 100%, 50%);
-    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(240, 100%, 50%, 0.5);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size)
+        hsla(240, 100%, 50%, 0.5);
     z-index: 9999;
 }
 
@@ -88,7 +91,8 @@
 .Light-yellow-on {
     border-bottom-right-radius: var(--border-corner-radius);
     background-color: hsl(60, 100%, 50%);
-    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size) hsla(60, 100%, 50%, 0.5);
+    box-shadow: 0px 0px var(--shadow-diffumination) var(--shadow-size)
+        hsla(60, 100%, 50%, 0.5);
     z-index: 9999;
 }
 
