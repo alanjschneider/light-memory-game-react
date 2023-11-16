@@ -5,16 +5,8 @@ export default function createAudio(src) {
     play() {
       if (audio.paused) return audio.play();
 
-      const clone = audio.cloneNode();
-      clone.play();
-
-      clone.addEventListener(
-        "pause",
-        function () {
-          clone.remove();
-        },
-        false
-      );
+      // Multiple sounds playing on same time
+      audio.cloneNode().play();
     },
   };
 }

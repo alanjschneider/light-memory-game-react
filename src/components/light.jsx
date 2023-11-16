@@ -22,7 +22,8 @@ export default function Light({ id, state, color, onClick }) {
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
                 className={`
-                    Light Light-${color}-${state || pressed ? 'on' : 'off'}
+                    Light
+                    Light-${color}-${state || pressed ? 'on' : 'off'}
                     ${pressed ? 'Light-pressed' : ''}
                 `}>
                 </div>

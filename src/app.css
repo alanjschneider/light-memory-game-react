@@ -13,3 +13,18 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.Rotate-And-Scale {
+  animation: rotate-and-scale 400ms ease-in-out;
+}
+
+@keyframes rotate-and-scale {
+  from {
+    transform: scale(0.1) rotate(0);
+  }
+
+  to {
+    transform: scale(1) rotate(720deg);
+  }
+}
+
