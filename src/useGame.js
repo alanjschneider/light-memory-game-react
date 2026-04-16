@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { random } from "./lib/utils";
+import { useState, useEffect } from 'react';
+import { random } from './lib/utils';
 
 export const MACHINE_TURN = 0;
 export const PLAYER_TURN = 1;
@@ -14,11 +14,13 @@ const TIME = 500;
 let intervalID;
 
 export function useGame(sounds) {
+  // Hacer que se cambie el state de uno solo de alguna manera para
+  // Evitar el re-render de los demas (Pasar data-state directo?)
   const [lights, setLights] = useState([
-    { id: 0, color: "red", state: OFF },
-    { id: 1, color: "green", state: OFF },
-    { id: 2, color: "blue", state: OFF },
-    { id: 3, color: "yellow", state: OFF },
+    { id: 0, color: 'red', state: OFF },
+    { id: 1, color: 'green', state: OFF },
+    { id: 2, color: 'blue', state: OFF },
+    { id: 3, color: 'yellow', state: OFF },
   ]);
 
   let [lightsPressed, setLightsPressed] = useState([]);

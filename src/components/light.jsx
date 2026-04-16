@@ -1,31 +1,28 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
-import "./light.css";
+import PropTypes from 'prop-types';
+import './light.css';
+
+const hue = {
+  red: 0,
+  yellow: 60,
+  green: 120,
+  blue: 240,
+};
 
 export default function Light({ id, state, color, onClick }) {
-  const [pressed, setPressed] = useState(false);
-
   function handleMouseDown() {
-    setPressed(true);
     onClick(id);
-  }
-
-  function handleMouseUp() {
-    setPressed(false);
-    setPressed(false);
   }
 
   return (
     <div className="Light-spacer">
-      <div className={`Light-border Light-${color}-border`}>
+      <div className={`Light-border Light-${color}`}>
         <div
+          style={{ '--hue': hue[color] }}
           onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          data-state={state}
           className={`
             Light
-            Light-${color}-${state || pressed ? "on" : "off"}
-            ${pressed ? "Light-pressed" : ""}
+            Light-${color}
         `}
         ></div>
       </div>

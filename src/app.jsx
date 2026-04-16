@@ -5,42 +5,42 @@ import {
   PLAYER_ASSERT,
   PLAYER_MISS,
   WAITING_PLAYER,
-} from "./useGame";
+} from './useGame';
 
-import { randomPick } from "./lib/utils";
-import classes from "./lib/classes";
-import createAudio from "./lib/audio";
-import Button from "./components/button";
-import Light from "./components/light";
+import { randomPick } from './lib/utils';
+import classes from './lib/classes';
+import createAudio from './lib/audio';
+import Button from './components/button';
+import Light from './components/light';
 
-import "./app.css";
+import './app.css';
 
 const assertMessages = [
-  "Ok",
-  "Good",
-  "Great",
-  "Well done!",
-  "Nice!",
-  "Wow!",
-  "You rock!!!",
-  "Amazing!!!",
-  "Wow!!!",
+  'Ok',
+  'Good',
+  'Great',
+  'Well done!',
+  'Nice!',
+  'Wow!',
+  'You rock!!!',
+  'Amazing!!!',
+  'Wow!!!',
 ];
 
 const missMessages = [
-  "Really?",
-  "Do you have brain?",
-  "Hey! pay attention...",
-  "Ups...",
-  "Nooo!!!",
+  'Really?',
+  'Do you have brain?',
+  'Hey! pay attention...',
+  'Ups...',
+  'Nooo!!!',
 ];
 
 const sounds = [
-  createAudio("./synthC4.mp3"),
-  createAudio("./synthC5.mp3"),
-  createAudio("./synthC6.mp3"),
-  createAudio("./synthC7.mp3"),
-  createAudio("./synthC1.mp3"),
+  createAudio('./synthC4.mp3'),
+  createAudio('./synthC5.mp3'),
+  createAudio('./synthC6.mp3'),
+  createAudio('./synthC7.mp3'),
+  createAudio('./synthC1.mp3'),
 ];
 
 function App() {
@@ -55,22 +55,23 @@ function App() {
   function getMessageByState(state) {
     switch (state) {
       case MACHINE_TURN:
-        return "Memorize the patter";
+        return 'Memorize the pattern';
       case PLAYER_TURN:
-        return "Your turn";
+        return 'Your turn';
       case PLAYER_ASSERT:
         return randomPick(assertMessages);
       case PLAYER_MISS:
         return randomPick(missMessages);
     }
   }
+
   return (
     <div className="App">
       {state === WAITING_PLAYER && <Button value="Play" onClick={startGame} />}
       <h1
-        style={{ color: "#FFF" }}
+        style={{ color: '#FFF' }}
         className={classes({
-          "Rotate-And-Scale": state === PLAYER_ASSERT || state === PLAYER_MISS,
+          'Rotate-And-Scale': state === PLAYER_ASSERT || state === PLAYER_MISS,
         })}
       >
         {getMessageByState(state)}
