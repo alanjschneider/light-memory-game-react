@@ -21,6 +21,7 @@ export function useGame(sounds) {
     { id: 3, color: 'yellow', state: OFF },
   ]);
 
+  let [score, setScore] = useState(0);
   let [lightsPressed, setLightsPressed] = useState([]);
   let [gameState, setGameState] = useState(WAITING_PLAYER);
   let [pattern, setPattern] = useState([random(lights.length)]);
@@ -75,6 +76,7 @@ export function useGame(sounds) {
         setGameState(PLAYER_MISS);
         sounds[4].play(); // Miss sound
         setTimeout(() => setGameState(MACHINE_TURN), 1000);
+        setScore(0);
       }, 250);
       return;
     }
@@ -85,6 +87,7 @@ export function useGame(sounds) {
         setPattern((prevPattern) => [...prevPattern, random(lights.length)]);
         setTimeout(() => setGameState(MACHINE_TURN), 1000);
         setLightsPressed([]);
+        setScore((prev) => prev + 1);
       }, 250);
     }
   }
@@ -97,5 +100,5 @@ export function useGame(sounds) {
     setGameState(MACHINE_TURN);
   }
 
-  return [gameState, lights, startGame, pushLightPressed];
+  return { gameState, lights, startGame, pushLightPressed, score };
 }

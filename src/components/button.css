@@ -3,7 +3,12 @@
     border-radius: 8px;
     outline: none;
     border: none;
-    background-color: rgb(0, 183, 255);
+    background-color: #0099FF;
     color: #fff;
     font-size: 24px;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: #00aaff;
 }

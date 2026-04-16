@@ -44,7 +44,8 @@ const sounds = [
 ];
 
 function App() {
-  let [gameState, lights, startGame, pushLightPressed] = useGame(sounds);
+  let { gameState, lights, startGame, pushLightPressed, score } =
+    useGame(sounds);
 
   function handleLightPressed(id) {
     if (gameState !== PLAYER_TURN) return; // Prevent
@@ -90,6 +91,12 @@ function App() {
           <Light key={light.id} {...light} onClick={handleLightPressed} />
         ))}
       </div>
+
+      {gameState !== WAITING_PLAYER && (
+        <div className="Score">
+          Score <span>{score}</span>
+        </div>
+      )}
     </div>
   );
 }
