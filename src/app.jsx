@@ -44,16 +44,16 @@ const sounds = [
 ];
 
 function App() {
-  let [state, lights, startGame, pushLightPressed] = useGame(sounds);
+  let [gameState, lights, startGame, pushLightPressed] = useGame(sounds);
 
   function handleLightPressed(id) {
-    if (state !== PLAYER_TURN) return; // Prevent
+    if (gameState !== PLAYER_TURN) return; // Prevent
     pushLightPressed(id);
     sounds[id].play();
   }
 
-  function getMessageByState(state) {
-    switch (state) {
+  function getMessageByState(gameState) {
+    switch (gameState) {
       case MACHINE_TURN:
         return 'Memorize the pattern';
       case PLAYER_TURN:
@@ -67,14 +67,17 @@ function App() {
 
   return (
     <div className="App">
-      {state === WAITING_PLAYER && <Button value="Play" onClick={startGame} />}
+      {gameState === WAITING_PLAYER && (
+        <Button value="Play" onClick={startGame} />
+      )}
       <h1
         style={{ color: '#FFF' }}
         className={classes({
-          'Rotate-And-Scale': state === PLAYER_ASSERT || state === PLAYER_MISS,
+          'Rotate-And-Scale':
+            gameState === PLAYER_ASSERT || gameState === PLAYER_MISS,
         })}
       >
-        {getMessageByState(state)}
+        {getMessageByState(gameState)}
       </h1>
 
       <div className="Row">

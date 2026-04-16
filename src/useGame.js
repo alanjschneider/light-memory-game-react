@@ -14,8 +14,6 @@ const TIME = 500;
 let intervalID;
 
 export function useGame(sounds) {
-  // Hacer que se cambie el state de uno solo de alguna manera para
-  // Evitar el re-render de los demas (Pasar data-state directo?)
   const [lights, setLights] = useState([
     { id: 0, color: 'red', state: OFF },
     { id: 1, color: 'green', state: OFF },
@@ -24,20 +22,20 @@ export function useGame(sounds) {
   ]);
 
   let [lightsPressed, setLightsPressed] = useState([]);
-  let [state, setState] = useState(WAITING_PLAYER);
+  let [gameState, setGameState] = useState(WAITING_PLAYER);
   let [pattern, setPattern] = useState([random(lights.length)]);
 
   useEffect(() => {
-    if (state === MACHINE_TURN) {
+    if (gameState === MACHINE_TURN) {
       executeMachineTurn();
-    } else if (state === PLAYER_TURN) {
+    } else if (gameState === PLAYER_TURN) {
       executePlayerTurn();
     }
 
     return () => {
       clearInterval(intervalID);
     };
-  }, [state, lightsPressed]);
+  }, [gameState, lightsPressed]);
 
   function executeMachineTurn() {
     let count = 0;
@@ -56,7 +54,7 @@ export function useGame(sounds) {
           lights.map((light) => ({ ...light, state: OFF }))
         );
         if (count >= pattern.length) {
-          setState(PLAYER_TURN);
+          setGameState(PLAYER_TURN);
         }
       }, TIME);
 
@@ -74,18 +72,18 @@ export function useGame(sounds) {
       setTimeout(() => {
         setLightsPressed([]);
         setPattern([random(lights.length)]);
-        setState(PLAYER_MISS);
+        setGameState(PLAYER_MISS);
         sounds[4].play(); // Miss sound
-        setTimeout(() => setState(MACHINE_TURN), 1000);
+        setTimeout(() => setGameState(MACHINE_TURN), 1000);
       }, 250);
       return;
     }
 
     if (lightsPressed.length === pattern.length) {
       setTimeout(() => {
-        setState(PLAYER_ASSERT);
+        setGameState(PLAYER_ASSERT);
         setPattern((prevPattern) => [...prevPattern, random(lights.length)]);
-        setTimeout(() => setState(MACHINE_TURN), 1000);
+        setTimeout(() => setGameState(MACHINE_TURN), 1000);
         setLightsPressed([]);
       }, 250);
     }
@@ -96,8 +94,8 @@ export function useGame(sounds) {
   }
 
   function startGame() {
-    setState(MACHINE_TURN);
+    setGameState(MACHINE_TURN);
   }
 
-  return [state, lights, startGame, pushLightPressed];
+  return [gameState, lights, startGame, pushLightPressed];
 }
