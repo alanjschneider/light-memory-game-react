@@ -48,3 +48,10 @@
     transform: scale(1) rotate(720deg);
   }
 }
+
+@media (max-width: 767px) {
+    .Score {
+        top: 8px;
+        right: 8px;
+    }
+}

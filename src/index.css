@@ -13,6 +13,7 @@ body {
 
   width: 100%;
   height: 100%;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0d0d0d 100%);
 }
 
 * {
@@ -28,4 +29,17 @@ body {
 
 h1 {
   font-size: 40px;
+}
+
+@media (max-width: 767px) {
+    #root {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+    }
+
+    h1 {
+        font-size: 35px;
+    }
 }

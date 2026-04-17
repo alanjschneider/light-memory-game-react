@@ -50,3 +50,18 @@
 .Light-border:active {
     transform: scale(0.925);
 }
+
+@media (max-width: 767px) {
+    .Light {
+        width: 150px;
+        height: 150px;
+    }
+
+    .Light-spacer {
+        padding: 6px;
+    }
+
+    .Light-border {
+        padding: 10px;
+    }
+}
