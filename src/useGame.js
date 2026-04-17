@@ -70,14 +70,14 @@ export function useGame(sounds) {
 
     // If miss, restart:
     if (lightsPressed[lastIndex] !== pattern[lastIndex]) {
+      setGameState(PLAYER_MISS);
+      sounds[4].play(); // Miss sound
+      setLightsPressed([]);
+      setPattern([random(lights.length)]);
       setTimeout(() => {
-        setLightsPressed([]);
-        setPattern([random(lights.length)]);
-        setGameState(PLAYER_MISS);
-        sounds[4].play(); // Miss sound
-        setTimeout(() => setGameState(MACHINE_TURN), 1000);
         setScore(0);
-      }, 250);
+        setGameState(MACHINE_TURN);
+      }, 1500);
       return;
     }
 
@@ -85,7 +85,7 @@ export function useGame(sounds) {
       setTimeout(() => {
         setGameState(PLAYER_ASSERT);
         setPattern((prevPattern) => [...prevPattern, random(lights.length)]);
-        setTimeout(() => setGameState(MACHINE_TURN), 1000);
+        setTimeout(() => setGameState(MACHINE_TURN), 1500);
         setLightsPressed([]);
         setScore((prev) => prev + 1);
       }, 250);

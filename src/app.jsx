@@ -16,23 +16,41 @@ import Light from './components/light';
 import './app.css';
 
 const assertMessages = [
-  'Ok',
-  'Good',
-  'Great',
-  'Well done!',
-  'Nice!',
-  'Wow!',
-  'You rock!!!',
-  'Amazing!!!',
-  'Wow!!!',
+  { scoreRange: [1, 3], messages: ['Ok', 'Good', 'Great'] },
+  { scoreRange: [4, 7], messages: ['Well done!', 'Nice!', 'Wow!', 'Not bad!'] },
+  { scoreRange: [8, 10], messages: ['Keep it up!', 'You got it!'] },
+  { scoreRange: [11, 15], messages: ['You rock!!!', 'Amazing!!!', 'Wow!!!'] },
+  {
+    scoreRange: [16, Infinity],
+    messages: [
+      'ON FIRE!!!',
+      'LEGENDARY!!!',
+      'THIS IS INSANE!!!',
+      'WHAT A BEAST!!!',
+      'ARE YOU EVEN HUMAN?!',
+      'GOD MODE ACTIVATED!!!',
+      'YOU BROKE THE GAME!!!',
+    ],
+  },
 ];
 
 const missMessages = [
-  'Really?',
-  'Do you have brain?',
-  'Hey! pay attention...',
-  'Ups...',
-  'Nooo!!!',
+  {
+    scoreRange: [0, 2],
+    messages: ['Do you have a brain?', 'Are you even trying?', 'Really?'],
+  },
+  {
+    scoreRange: [3, 6],
+    messages: ['Hey! Pay attention...', 'Oops...', 'Focus!'],
+  },
+  {
+    scoreRange: [7, 10],
+    messages: ['Try again!', 'Wrong!'],
+  },
+  {
+    scoreRange: [11, Infinity],
+    messages: ['Try again!', 'Wrong!', 'Nooo!!!', 'So close!!!', 'Oh no!!!'],
+  },
 ];
 
 const sounds = [
@@ -60,9 +78,16 @@ function App() {
       case PLAYER_TURN:
         return 'Your turn';
       case PLAYER_ASSERT:
-        return randomPick(assertMessages);
+        return getRandomMessageByScore(assertMessages, score);
       case PLAYER_MISS:
-        return randomPick(missMessages);
+        return getRandomMessageByScore(missMessages, score);
+    }
+  }
+
+  function getRandomMessageByScore(messages, score) {
+    for (const message of messages) {
+      const [min, max] = message.scoreRange;
+      if (score >= min && score <= max) return randomPick(message.messages);
     }
   }
 
