@@ -70,8 +70,8 @@ export function useGame(sounds) {
 
     // If miss, restart:
     if (lightsPressed[lastIndex] !== pattern[lastIndex]) {
+      setTimeout(() => sounds[4].play(), 250); // Miss sound
       setGameState(PLAYER_MISS);
-      sounds[4].play(); // Miss sound
       setLightsPressed([]);
       setPattern([random(lights.length)]);
       setTimeout(() => {
