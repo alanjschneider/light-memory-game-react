@@ -1,8 +1,22 @@
 export default function createAudio(src) {
-  const audio = new Audio(src);
+  const context = new AudioContext();
+  let buffer = null;
+
+  fetch(src)
+    .then((res) => res.arrayBuffer())
+    .then((data) => context.decodeAudioData(data))
+    .then((decoded) => {
+      buffer = decoded;
+    });
 
   return {
-    // Multiple sounds playing on same time
-    play: () => (audio.paused ? audio.play() : audio.cloneNode().play()),
+    play: function () {
+      if (!buffer) return;
+
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.connect(context.destination);
+      source.start(0);
+    },
   };
 }
